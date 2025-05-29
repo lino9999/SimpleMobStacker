@@ -13,6 +13,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.ItemSpawnEvent;
+import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -153,6 +154,55 @@ public class SimpleMobStacker extends JavaPlugin implements Listener {
                 tryStackItemsWithNearby(item);
             }
         }, 1L);
+    }
+
+    @EventHandler(priority = EventPriority.HIGH)
+    public void onPlayerPickupItem(PlayerPickupItemEvent event) {
+        if (event.isCancelled()) return;
+
+        Item item = event.getItem();
+        Player player = event.getPlayer();
+
+        // Controlla se questo item è uno stack virtuale
+        if (stackedItems.containsKey(item.getUniqueId())) {
+            int virtualStackSize = stackedItems.get(item.getUniqueId());
+            ItemStack itemStack = item.getItemStack();
+
+            // Annulla l'evento di pickup normale
+            event.setCancelled(true);
+
+            // Crea un nuovo ItemStack con la quantità corretta
+            ItemStack fullStack = itemStack.clone();
+
+            // Aggiungi gli item all'inventario del giocatore
+            int maxStackSize = fullStack.getMaxStackSize();
+            int remaining = virtualStackSize;
+
+            while (remaining > 0) {
+                int amountToGive = Math.min(remaining, maxStackSize);
+                fullStack.setAmount(amountToGive);
+
+                // Prova ad aggiungere all'inventario
+                HashMap<Integer, ItemStack> leftover = player.getInventory().addItem(fullStack.clone());
+
+                if (!leftover.isEmpty()) {
+                    // Se l'inventario è pieno, droppa gli item rimanenti
+                    for (ItemStack leftoverStack : leftover.values()) {
+                        player.getWorld().dropItemNaturally(player.getLocation(), leftoverStack);
+                    }
+                    break;
+                }
+
+                remaining -= amountToGive;
+            }
+
+            // Rimuovi l'item dal mondo e dalla mappa degli stack
+            stackedItems.remove(item.getUniqueId());
+            item.remove();
+
+            // Messaggio opzionale per il debug
+            // player.sendMessage("§aRaccolti " + virtualStackSize + "x " + itemStack.getType().name());
+        }
     }
 
     @EventHandler(priority = EventPriority.HIGH)
