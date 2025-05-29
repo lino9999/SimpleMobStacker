@@ -1,33 +1,31 @@
-# Configurazione SimpleMobStacker
+# Block radius to consider nearby mobs for stacking
+stack-radius: 16
 
-# Raggio in blocchi per considerare i mob vicini per lo stacking
-stack-radius: 8
-
-# Raggio in blocchi entro cui deve essere presente un player per attivare lo stacking
+# Radius in blocks within which a player must be present to activate stacking
 player-radius: 50
 
-# Dimensione massima di uno stack di mob
-max-stack-size: 64
+# Maximum size of a mob stack
+max-stack-size: 9999
 
-# Raggio in blocchi per considerare gli item vicini per lo stacking
+# Block radius to consider nearby items for stacking
 item-stack-radius: 5
 
-# Dimensione massima di uno stack di item
-max-item-stack-size: 1000
+# Maximum size of an item stack
+max-item-stack-size: 9999
 
-# Stacka i mob che spawnano naturalmente
+# Stacks naturally spawning mobs
 stack-natural-mobs: true
 
-# Stacka i mob che spawnano dagli spawner
+# Stacks mobs that spawn from spawners
 stack-spawner-mobs: true
 
-# Stacka gli item a terra
+# Stack items on the ground
 stack-items: true
 
-# Abilita l'assorbimento tra stack (i mobstack si fondono tra loro)
+# Enable cross-stack absorption (mobstacks merge together)
 enable-stack-absorption: true
 
-# Tipi di mob che possono essere stackati
+# Types of mobs that can be stacked
 stackable-types:
     - "ZOMBIE"
     - "SKELETON"
