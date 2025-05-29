@@ -1,0 +1,15 @@
+name: SimpleMobStacker
+version: '1.0'
+main: com.Lino.simplemobstacker.SimpleMobStacker
+api-version: '1.21'
+commands:
+  simplemobstacker:
+    description: Comandi del SimpleMobStacker
+    usage: /simplemobstacker reload
+    permission: simplemobstacker.admin
+    aliases: [sms]
+
+permissions:
+  simplemobstacker.admin:
+    description: Permesso per usare i comandi admin
+    default: op

@@ -1,0 +1,52 @@
+# Configurazione SimpleMobStacker
+
+# Raggio in blocchi per considerare i mob vicini per lo stacking
+stack-radius: 8
+
+# Raggio in blocchi entro cui deve essere presente un player per attivare lo stacking
+player-radius: 50
+
+# Dimensione massima di uno stack di mob
+max-stack-size: 64
+
+# Raggio in blocchi per considerare gli item vicini per lo stacking
+item-stack-radius: 5
+
+# Dimensione massima di uno stack di item
+max-item-stack-size: 1000
+
+# Stacka i mob che spawnano naturalmente
+stack-natural-mobs: true
+
+# Stacka i mob che spawnano dagli spawner
+stack-spawner-mobs: true
+
+# Stacka gli item a terra
+stack-items: true
+
+# Abilita l'assorbimento tra stack (i mobstack si fondono tra loro)
+enable-stack-absorption: true
+
+# Tipi di mob che possono essere stackati
+stackable-types:
+    - "ZOMBIE"
+    - "SKELETON"
+    - "CREEPER"
+    - "SPIDER"
+    - "CAVE_SPIDER"
+    - "ENDERMAN"
+    - "WITCH"
+    - "SLIME"
+    - "MAGMA_CUBE"
+    - "BLAZE"
+    - "GHAST"
+    - "COW"
+    - "SHEEP"
+    - "PIG"
+    - "CHICKEN"
+    - "RABBIT"
+    - "HORSE"
+    - "DONKEY"
+    - "MULE"
+    - "LLAMA"
+    - "VILLAGER"
