@@ -1,15 +1,52 @@
 name: SimpleMobStacker
-version: '1.0'
+version: '1.1'
 main: com.Lino.simplemobstacker.SimpleMobStacker
 api-version: '1.21'
+author: Lino
+description: Un plugin efficiente per stackare mob e item simili
+
 commands:
   simplemobstacker:
-    description: Comandi del SimpleMobStacker
-    usage: /simplemobstacker reload
-    permission: simplemobstacker.admin
-    aliases: [sms]
+    description: Comando principale di SimpleMobStacker
+    usage: |
+      /<command> - Mostra l'help
+      /<command> reload - Ricarica la configurazione
+      /<command> clear - Rimuove tutti gli stack
+      /<command> stats - Mostra le statistiche
+      /<command> debug - Toggle debug mode
+    permission: simplemobstacker.use
+    aliases: [sms, mobstack]
 
 permissions:
+  simplemobstacker.use:
+    description: Permesso base per usare i comandi
+    default: true
+
   simplemobstacker.admin:
     description: Permesso per usare i comandi admin
     default: op
+    children:
+      simplemobstacker.reload: true
+      simplemobstacker.clear: true
+      simplemobstacker.debug: true
+      simplemobstacker.stats: true
+
+  simplemobstacker.reload:
+    description: Permesso per ricaricare la configurazione
+    default: op
+
+  simplemobstacker.clear:
+    description: Permesso per rimuovere tutti gli stack
+    default: op
+
+  simplemobstacker.debug:
+    description: Permesso per usare il debug mode
+    default: op
+
+  simplemobstacker.stats:
+    description: Permesso per vedere le statistiche
+    default: true
+
+  simplemobstacker.bypass:
+    description: I mob di questo player non verranno stackati
+    default: false

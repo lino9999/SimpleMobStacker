@@ -1,32 +1,69 @@
+# SimpleMobStacker Configuration
+# Version: 1.1
+
+# ===== STACKING SETTINGS =====
 # Block radius to consider nearby mobs for stacking
-stack-radius: 16
+stack-radius: 8
 
 # Radius in blocks within which a player must be present to activate stacking
 player-radius: 50
 
 # Maximum size of a mob stack
-max-stack-size: 9999
+max-stack-size: 100
 
 # Block radius to consider nearby items for stacking
 item-stack-radius: 5
 
-# Maximum size of an item stack
-max-item-stack-size: 9999
+# Maximum size of an item stack (virtual stack)
+max-item-stack-size: 5000
 
-# Stacks naturally spawning mobs
+# Maximum number of mob stacks allowed per chunk (performance protection)
+max-stacks-per-chunk: 50
+
+# ===== SPAWN SETTINGS =====
+# Stack naturally spawning mobs
 stack-natural-mobs: true
 
-# Stacks mobs that spawn from spawners
+# Stack mobs that spawn from spawners
 stack-spawner-mobs: true
+
+# Stack mobs that spawn from eggs
+stack-egg-mobs: true
 
 # Stack items on the ground
 stack-items: true
 
+# ===== STACK BEHAVIOR =====
 # Enable cross-stack absorption (mobstacks merge together)
 enable-stack-absorption: true
 
+# Require mobs to be the same age (baby/adult) to stack
+require-same-age: true
+
+# Require mobs to have similar health to stack
+require-same-health: false
+
+# Use modern display entities for names (1.19.4+)
+use-display-entities: true
+
+# ===== PERFORMANCE =====
+# Interval in seconds between cleanup tasks
+cleanup-interval: 300
+
+# Enable debug mode (shows additional information)
+debug-mode: false
+
+# ===== WORLD SETTINGS =====
+# Worlds where stacking is disabled
+blacklisted-worlds:
+    - "world_the_end"
+    # - "creative_world"
+
+# ===== MOB TYPES =====
 # Types of mobs that can be stacked
+# Leave empty to use default list
 stackable-types:
+    # Hostile Mobs
     - "ZOMBIE"
     - "SKELETON"
     - "CREEPER"
@@ -38,6 +75,26 @@ stackable-types:
     - "MAGMA_CUBE"
     - "BLAZE"
     - "GHAST"
+    - "GUARDIAN"
+    - "ELDER_GUARDIAN"
+    - "PHANTOM"
+    - "DROWNED"
+    - "HUSK"
+    - "STRAY"
+    - "WITHER_SKELETON"
+    - "PIGLIN"
+    - "ZOMBIFIED_PIGLIN"
+    - "HOGLIN"
+    - "ZOGLIN"
+    - "ENDERMITE"
+    - "SILVERFISH"
+    - "VEX"
+    - "PILLAGER"
+    - "VINDICATOR"
+    - "EVOKER"
+    - "RAVAGER"
+
+    # Passive Mobs
     - "COW"
     - "SHEEP"
     - "PIG"
@@ -47,4 +104,36 @@ stackable-types:
     - "DONKEY"
     - "MULE"
     - "LLAMA"
+    - "TRADER_LLAMA"
+    - "PARROT"
+    - "TURTLE"
+    - "BEE"
+    - "FOX"
+    - "PANDA"
+    - "OCELOT"
+    - "CAT"
+    - "WOLF"
+    - "AXOLOTL"
+    - "GLOW_SQUID"
+    - "SQUID"
+    - "DOLPHIN"
+    - "COD"
+    - "SALMON"
+    - "PUFFERFISH"
+    - "TROPICAL_FISH"
+    - "STRIDER"
+    - "GOAT"
+    - "FROG"
+    - "TADPOLE"
+    - "ALLAY"
+    - "SNIFFER"
+    - "CAMEL"
+
+    # Neutral Mobs
+    - "IRON_GOLEM"
+    - "SNOWMAN"
+    - "POLAR_BEAR"
+
+    # Villagers
     - "VILLAGER"
+    - "WANDERING_TRADER"
