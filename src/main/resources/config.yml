@@ -43,9 +43,6 @@ require-same-age: true
 # Require mobs to have similar health to stack
 require-same-health: false
 
-# Use modern display entities for names (1.19.4+)
-use-display-entities: true
-
 # ===== PERFORMANCE =====
 # Interval in seconds between cleanup tasks
 cleanup-interval: 300

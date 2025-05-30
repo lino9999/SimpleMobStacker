@@ -1,7 +1,5 @@
 package com.Lino.simplemobstacker;
 
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
@@ -51,7 +49,6 @@ public class SimpleMobStacker extends JavaPlugin implements Listener, TabComplet
     private int cleanupInterval;
     private boolean debugMode;
     private int maxStacksPerChunk;
-    private boolean useDisplayEntities;
 
     @Override
     public void onEnable() {
@@ -113,7 +110,6 @@ public class SimpleMobStacker extends JavaPlugin implements Listener, TabComplet
         cleanupInterval = config.getInt("cleanup-interval", 300);
         debugMode = config.getBoolean("debug-mode", false);
         maxStacksPerChunk = config.getInt("max-stacks-per-chunk", 50);
-        useDisplayEntities = config.getBoolean("use-display-entities", true);
 
         stackableTypes = config.getStringList("stackable-types");
         blacklistedWorlds = config.getStringList("blacklisted-worlds");
@@ -676,13 +672,7 @@ public class SimpleMobStacker extends JavaPlugin implements Listener, TabComplet
 
     private void updateDisplayName(Entity entity, int stackSize) {
         if (stackSize > 1) {
-            if (useDisplayEntities && entity instanceof LivingEntity) {
-                Component displayName = Component.text(stackSize + "x ", NamedTextColor.YELLOW)
-                        .append(Component.text(formatEntityName(entity.getType().name()), NamedTextColor.WHITE));
-                entity.customName(displayName);
-            } else {
-                entity.setCustomName("§e" + stackSize + "x §f" + formatEntityName(entity.getType().name()));
-            }
+            entity.setCustomName("§e" + stackSize + "x §f" + formatEntityName(entity.getType().name()));
             entity.setCustomNameVisible(true);
         } else {
             entity.setCustomName(null);
@@ -693,13 +683,7 @@ public class SimpleMobStacker extends JavaPlugin implements Listener, TabComplet
     private void updateItemDisplayName(Item item, int stackSize) {
         if (stackSize > item.getItemStack().getAmount()) {
             String itemName = formatEntityName(item.getItemStack().getType().name());
-            if (useDisplayEntities) {
-                Component displayName = Component.text(stackSize + "x ", NamedTextColor.AQUA)
-                        .append(Component.text(itemName, NamedTextColor.WHITE));
-                item.customName(displayName);
-            } else {
-                item.setCustomName("§b" + stackSize + "x §f" + itemName);
-            }
+            item.setCustomName("§b" + stackSize + "x §f" + itemName);
             item.setCustomNameVisible(true);
         } else {
             item.setCustomName(null);
